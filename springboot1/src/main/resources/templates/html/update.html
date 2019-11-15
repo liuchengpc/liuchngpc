@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>修改</h3>
+	<div id="ctx">
+		<form action="#" th:action="@{/StudentController/updateByPrimaryKeySelective}"   method="post" >
+			编号：<input  type="text"  name="id" v-model="stu.id"><br>
+			姓名：<input  type="text"  name="stuname" v-model="stu.stuname"><br>
+			科目：<input  type="text"  name="project" v-model="stu.project"><br>
+			分数：<input  type="text"  name="score" v-model="stu.score"><br>	
+			时间：<input  type="date"  name="time" v-model="stu.time"><br>
+			<input value="修改" @Click="updateStu()" type="button">
+		</form>
+	</div>
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	 <script type="text/javascript" th:src="@{/js/vue.js}"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:"#ctx",
+			 data: function () {
+				    return {
+				      stu:{}
+				    }
+			 },methods:{
+				 selectbyid:function(){
+				 	var this_=this;
+				 	var s=window.location.href.split("id=")[1];
+					$.ajax({
+						url:"/StudentController/selectByPrimaryKey",
+						type:"get",
+						data:{id:s},
+						dataType:"json",
+						success:function(res){
+							console.info("student")
+							console.info(res)
+							this_.stu=res;
+						}	
+					})
+				},
+				updateStu:function(i){
+					var this_=this;
+					
+					 $.ajax({
+						   	type:"post",
+						   	url:"[[@{/StudentController/updateByPrimaryKeySelective}]]",
+						   	//async:true,
+						   	data:JSON.stringify(this_.stu),
+						   	dataType:"json",
+						   	contentType:"application/json;charse=UTF-8",
+						   	success:function(res){
+						   		console.info(res)
+						   		alert(res.message);
+						   		
+								if(res.code == "1"){
+									window.location.href="http://127.0.0.1:8080/StudentController/index";
+								}	
+						   	}
+					   });
+				}
+			},created:function(){
+				this.selectbyid();
+			}
+		})
+	</script>
+</body>
+</html>
