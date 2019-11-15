@@ -66,7 +66,6 @@ public class StudentController {
     @RequestMapping("upload")
     public String upload(@RequestParam("file") MultipartFile file, Model model) {
     	System.out.println("fdjsoiewhoi");
-    	System.out.println("fjsoewihpohwea");
         // 获取上传文件名
         String filename = file.getOriginalFilename();
         // 定义上传文件保存路径
