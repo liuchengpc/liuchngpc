@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="${../css/bootstrap.css}">
+    <title>Title</title>
+</head>
+<body>
+    <form th:action="/StudentController/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*">
+        <br>
+        <input type="submit" value="上传" class="btn btn-success">
+    </form>
+    [[${filename}]]
+    <br>
+    <img th:src="@{${filename}}" alt="图片">
+</body>
+</html>

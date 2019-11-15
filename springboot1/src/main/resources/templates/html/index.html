@@ -1,0 +1,106 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <div class="container" id="lists" >
+    	<div class="row"  >
+			<table>
+				<tr>
+					<td>编号</td>
+					<td>姓名</td>
+					<td>科目</td>
+					<td>分数</td>
+					<td>生日</td>
+					<td>操作</td> 
+				</tr>
+				<tr v-for="pages,index in page.list">
+					<td>{{pages.id}}</td>
+					<td>{{pages.stuname}}</td>
+					<td>{{pages.project}}</td>
+					<td>{{pages.score}}</td>
+					<td>{{pages.time}}</td>
+					<td><a href="javascript:;" @click="insertStu()" style="margin-right: 5px">新增</a><a href="javascript:;" @click="updateStu(pages.id)" style="margin-right: 5px">修改</a><a href="javascript:;" @click="deleteStu(index,pages.tbLineId)" >删除</a></td>
+				</tr>
+				<tr>
+					<td colspan="6" style="text-align: center;">
+						<input type="button" @click="prePage()" value="上一页">
+						<input type="button" @click="nextPage()" value="下一页">
+					</td>
+				</tr>
+			</table>
+			
+		</div>
+	</div>
+	 
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	 <script type="text/javascript" th:src="@{/js/vue.js}"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:"#lists",
+			 data: function () {
+				    return {
+				      page:[
+				    	  
+				      ]
+				    }
+			  },methods:{
+				selectAll:function(i){//查询所有分页
+					var this_=this;
+					$.ajax({
+						url:"[[@{/StudentController/selectAllpage}]]",
+						type:"get",
+						data:"pageNum="+i+"&pageSize=3",
+						dataType:"json",
+						success:function(res){
+							console.info("分页数据")
+							console.info(res)
+							this_.page = res;
+							console.info(this_.page)
+						}	
+					})
+				},
+				insertStu(){//跳转新增
+					alert("新增")
+					window.location.href="http://127.0.0.1:8080/StudentController/add";
+				},
+				updateStu(id){//跳转修改
+					alert("修改")
+					window.location.href="http://127.0.0.1:8080/StudentController/update?id="+id;
+				},
+				deleteStu(index,id){//删除
+					var this_ = this;
+					if (confirm("是否删除")==true) {
+						$.ajax({
+							url:"[[@{/StudentController/deleteByPrimaryKey}]]",
+							type:"get",
+							data:"id="+id,
+							dataType:"json",
+							success:function(res){
+								alert(res.message);
+								if(res.code == "1"){
+									this_.page.list.splice(index, 1);//splice(index, 1) 删除从索引开始的一个元素
+								}
+							}
+						})
+					}
+				},
+				prePage: function() {//上一条
+					if(this.page.hasPreviousPage) {
+						this.selectAll(this.page.prePage);
+					}
+				},
+				nextPage: function() {//下一条
+					if(this.page.hasNextPage) {
+						this.selectAll(this.page.nextPage);
+					}
+				},
+			},created:function(){
+				this.selectAll(1);
+			}
+		})
+	</script>
+</body>
+</html>
