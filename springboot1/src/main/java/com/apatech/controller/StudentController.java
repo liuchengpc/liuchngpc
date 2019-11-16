@@ -48,6 +48,7 @@ public class StudentController {
 	
 	@RequestMapping("/toupload")
 	public String toupload() {
+		System.out.println("foewjiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 		return "upload";
 	}
 	
