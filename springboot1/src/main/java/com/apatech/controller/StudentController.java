@@ -61,31 +61,38 @@ public class StudentController {
         return "upload";
     }
 
+
     
-    // 执行上传
-    @RequestMapping("upload")
-    public String upload(@RequestParam("file") MultipartFile file, Model model) {
-    	
-        // 获取上传文件名
-        String filename = file.getOriginalFilename();
-        // 定义上传文件保存路径
-        String path = filePath+"rotPhoto/";
-        // 新建文件
-        File filepath = new File (path, filename);
-        // 判断路径是否存在，如果不存在就创建一个
-        if (!filepath.getParentFile().exists()) {
-            filepath.getParentFile().mkdirs();
-        }
-        try {
-            // 写入文件
-            file.transferTo(new File(path + File.separator + filename));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // 将src路径发送至html页面
-        model.addAttribute("filename", "/images/rotPhoto/"+filename);
-        return "Page";
-    }
+//    // 执行上传
+//    @RequestMapping("upload")
+//    public String upload(@RequestParam("file") MultipartFile file, Model model) {
+//    	return
+//    }
+//    	
+//
+//    // 执行上传
+//    @RequestMapping("upload")
+//    public String upload(@RequestParam("file") MultipartFile file, Model model) {
+//        // 获取上传文件名
+//        String filename = file.getOriginalFilename();
+//        // 定义上传文件保存路径
+//        String path = filePath+"rotPhoto/";
+//        // 新建文件
+//        File filepath = new File (path, filename);
+//        // 判断路径是否存在，如果不存在就创建一个
+//        if (!filepath.getParentFile().exists()) {
+//            filepath.getParentFile().mkdirs();
+//        }
+//        try {
+//            // 写入文件
+//            file.transferTo(new File(path + File.separator + filename));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        // 将src路径发送至html页面
+//        model.addAttribute("filename", "/images/rotPhoto/"+filename);
+//        return "Page";
+//    }
 	
 	
 	
