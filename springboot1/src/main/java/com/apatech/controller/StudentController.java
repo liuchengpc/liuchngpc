@@ -51,6 +51,8 @@ public class StudentController {
 		System.out.println("foewjiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 		System.out.println("哈哈哈哈哈哈");
 		System.out.println("fjsdoiffdsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjfdsfafjjjjjjjj");
+		System.out.println("哈哈哈哈哈哈");
+		System.out.println("fjsdoiffdsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjfdsfafjjjjjjjj");
 		return "upload";
 	}
 	
