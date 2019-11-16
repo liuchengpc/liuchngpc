@@ -154,6 +154,7 @@ public class StudentController {
 	@ResponseBody
     public Map<String, String> updateByPrimaryKeySelective(@RequestBody Student student) {
 		System.out.println("进入");
+		System.out.println();
 		Map<String, String> map=new HashMap<String, String>();
 		System.out.println("实体："+student.toString());
     	int i=dao.updateByPrimaryKeySelective(student);
