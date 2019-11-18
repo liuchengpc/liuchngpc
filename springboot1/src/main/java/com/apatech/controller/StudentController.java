@@ -29,6 +29,7 @@ public class StudentController {
 	
 	@RequestMapping("/tzs")
 	public String selectAll(String tz) {
+		System.out.println("徐哲");
 		System.out.println("进入跳转");
 		System.out.println(tz);
 		return tz;
